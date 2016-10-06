@@ -3,7 +3,6 @@
 // Program:  1
 // Due Date: 10/06/2016
 // Description: Introspective algorithm implementation
-// Score: 10 Well Doc, 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++
  
 #include "sorting.h"
@@ -16,10 +15,11 @@ int main( int argc, char *argv[] ){
 	char proceed;					// Char bool to indicate additional file
 	static int caseCount = 0;		// If there are two or more files then it is Case 3
 	clock_t begin, end;				// Measures elapsed time
+	double total_Secs;				// Total elapsed time for multiple files
 	
 	do{
 		caseName = getFileInput(arr);	// Function to get file input
-		
+		cout << "\e[5m\e[94mWorking...\n\n\e[39m\e[0m";
 		begin = clock();
 		sort.introsort(arr);			// Calls introSort functions from the object 
 		end = clock();
@@ -29,10 +29,10 @@ int main( int argc, char *argv[] ){
 		if(caseCount == 1)
 			caseName = "Case3";
 		caseCount++;
+		total_Secs += double(end - begin) / CLOCKS_PER_SEC;
 	}while(toupper(proceed) == 'Y');
 	printArray(arr, arr.size()-1, caseName); // Print vector values to an output file
-	double elapsed_secs = double(end - begin) / CLOCKS_PER_SEC;
-	cout << "\e[31mElapsed time: " << elapsed_secs << " Secs.\e[39m" << endl;
+	cout << "\e[31mElapsed time: " << total_Secs << " Secs.\e[39m" << endl;
  
     return 0;
 }

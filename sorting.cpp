@@ -121,6 +121,7 @@ string getFileInput(vector<int>&arr){
 	char limitArray;
 	int limit = -1;
 	int i = 0;
+	size_t pos1 = -1, pos2;
 	
 	cout <<green<< "Enter file name with extension\n>> " << def;
 	cin >> fileName;
@@ -152,8 +153,11 @@ string getFileInput(vector<int>&arr){
 		//cout << value << endl;
     }
 	// Removes the extension from the string
-	size_t pos = fileName.find(".");
-	fileName = fileName.substr(0, pos);
+	if(fileName.find("/") != string::npos)
+		pos1 = fileName.find("/");
+	
+	pos2 = fileName.find(".");
+	fileName = fileName.substr(pos1+1, pos2);
 	
 	if(DEBUG)
 		cout << "Filename: " << fileName << endl;
