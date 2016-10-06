@@ -1,5 +1,5 @@
 //++++++++++++++++++++++++++++++++++++++++++++++++++++
-// Author:   Luis D. Chaparro
+// Author:   Luis D. Chaparro, Aashis Karki
 // Program:  1
 // Due Date: 10/06/2016
 // Description: Introspective algorithm implementation
