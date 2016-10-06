@@ -9,7 +9,7 @@
 #include <cmath>
 #include <algorithm>
 #include <fstream>
-#include <time.h>
+#include <ctime>
 #include <sstream>
 #include <vector>
 using namespace std;
@@ -38,27 +38,56 @@ using namespace std;
 
 #pragma endregion
 
+#pragma region Text Color
+namespace Color
+{
+	enum Code
+	{
+		FG_RED = 31,
+		FG_GREEN = 32,
+		FG_BLUE = 94,
+		FG_DEFAULT = 39,
+		BG_RED = 41,
+		BG_GREEN = 42,
+		BG_BLUE = 44,
+		BG_DEFAULT = 49
+	};
+	class Modifier
+	{
+		Code code;
+	public:
+		Modifier(Code pCode) : code(pCode) {}
+		friend std::ostream&
+			operator<<(std::ostream& os, const Modifier& mod)
+		{
+			return os << "\033[" << mod.code << "m";
+		};
+
+	};
+}
+#pragma endregion
+
 #pragma region SortingClass
 // Sorting algorithm class
 class Sorting{
 	public:
-		// Introsort Algorithm
+		// Introsort Algorithms
 		void introsort(vector<int>&);
-		void introsort_Quick(vector<int>&, int, int, int);
-
+		void introsort_Quick(vector<int>&, int, int, int);		
 		void insertionSort(vector<int>&);
-		int partition(vector<int>&, int, int);
-		
+		int partition(vector<int>&, int, int);		
 		int medianOfThree(int, int, int);
 };
 
 #pragma endregion
 
 #pragma region GeneralFuncs
+// Gets the case file 
+string getCaseFile();
 // Get input from file
-void getFileInput(vector<int>&);
+string getFileInput(vector<int>&);
 // Swap int values 
-void swapValue(int, int);
+void swapValue(vector<int>&, int, int);
 // Print sorted array
 void printArray(vector<int>, int, string);
 #pragma endregion

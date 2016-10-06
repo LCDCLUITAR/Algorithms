@@ -3,3 +3,8 @@ All:
 run:
 	clear
 	./Sort
+clean:
+	clear
+	rm Sort *-OUTPUT.txt
+review:
+	pico Case3-OUTPUT.txt
