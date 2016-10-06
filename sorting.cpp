@@ -15,7 +15,7 @@ Color::Modifier def(Color::FG_DEFAULT);
 void Sorting::introsort(vector<int>&arr){
     int depthLimit = 2 * log(arr.size());
     // Recursive Introsort
-    introsort_Quick(arr, 0, arr.size(), depthLimit);
+    introsort_Quick(arr, 0, arr.size()-1, depthLimit);
     return;
 }
 // Introspective Sort / Quicksort as default
@@ -46,7 +46,7 @@ void Sorting::introsort_Quick(vector<int>&arr, int left, int right, int depthLim
     int pivotVal = medianOfThree(arr.front(), arr[(size/2)-1], arr.back());
 	int pivotIndex = find(arr.begin(), arr.end(), pivotVal) - arr.begin();
 	if(DEBUG)
-		cout <<green<< "PivotIndex: " << pivotIndex << " Last Val: " << arr.size()-1 <<def<< endl;
+		cout <<green<< "PivotIndex: " << pivotIndex << " Last Val: " << arr[arr.size()-1] <<def<< endl;
 	
     // Swaps values
     swapValue(arr, pivotIndex, arr.size()-1);
@@ -55,8 +55,10 @@ void Sorting::introsort_Quick(vector<int>&arr, int left, int right, int depthLim
 	unsigned int partitionPoint = partition(arr, left, right);
 	if(DEBUG)
 		cout << "partitionPoint: "<< partitionPoint << endl;
+	if(DEBUG && CHECKPOINT)
+		SLEEP;
 	introsort_Quick(arr, left, partitionPoint-1, depthLimit - 1);
-	introsort_Quick(arr, partitionPoint + 1, right, depthLimit - 1);
+	introsort_Quick(arr, partitionPoint + 1, arr.size()-1, depthLimit - 1);
  
     return;
 }
@@ -96,11 +98,11 @@ int Sorting::partition(vector<int>&arr, int low, int high){
  
             swapValue(arr, i, j);
 			if(DEBUG)
-				cout <<blue<< "Swap: " << i << " with: " << j <<def<< endl;
+				cout <<blue<< "Swap: " << i << " with: " << j << " arr.front: " << arr.front() <<def<< endl;
         }
     }
     swapValue(arr, (i+1), high);
-    return (arr.front() + i + 1);
+    return (0 + i + 1);
 } 
  
 // Median of three function to find the middle element

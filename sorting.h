@@ -8,6 +8,7 @@
 #include <vector>
 #include <cmath>
 #include <algorithm>
+#include <unistd.h>
 #include <fstream>
 #include <ctime>
 #include <sstream>
@@ -35,6 +36,7 @@ using namespace std;
 
 #define LINEBREAK cout << endl;// Line break
 #define DEBUG false // For debugging
+#define CHECKPOINT false // Enables SLEEP
 
 #pragma endregion
 
